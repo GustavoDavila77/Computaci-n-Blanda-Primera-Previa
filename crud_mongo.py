@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from iniciar_db import fill_filter
+from iniciar_db import fill_filter, fill_rules
 from iniciar_db import fill_facts
 
 
@@ -39,7 +39,7 @@ def questions():
             
             if answer == 1:
                 id_hecho= str(f.get("_id"))
-                
+
             
         
 
@@ -54,6 +54,13 @@ def load_filter():
 def load_facts():
   try:
     fill_facts()
+    print('datos cargados a la colección')
+  except ValueError:
+    print('error al cargar datos a la colección')
+
+def load_rules():
+  try:
+    fill_rules()
     print('datos cargados a la colección')
   except ValueError:
     print('error al cargar datos a la colección')
@@ -78,6 +85,9 @@ def delete_facts():
 
 #********************* cargar hechos
 #load_facts()
+
+#********************* cargar rules
+load_rules()
 
 #**********************borrar filters
 #delete_filter()
